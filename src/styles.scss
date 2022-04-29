@@ -1,0 +1,61 @@
+/* You can add global styles to this file, and also import other style files */
+@import "styles/index";
+$padding-24: 24px;
+
+*, ::after, ::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: $clr-background;
+  font-family: -apple-system,BlinkMacSystemFont,segoe ui,Roboto,Oxygen,Ubuntu,Cantarell,open sans,helvetica neue,sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  word-break: break-word;
+  ::-webkit-scrollbar-thumb {
+    background: $clr-secondary-background;
+    border: 5px solid $clr-secondary-background;
+    border-radius: 8px;
+  }
+}
+
+h1, h2, h3, h4, h5, h6, p, a, ul, ol, li {
+  color: $clr-primary-color;
+}
+
+a {
+  text-decoration: none;
+}
+
+ol,ul{
+  padding-inline-start: 20px;
+  margin-bottom:20px;
+}
+
+li {
+  margin-top: 5px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin: 0 auto;
+  padding: $padding-24;
+  min-height: 80vh;
+  max-width: 720px;
+}
+
+.content {
+  max-width: 672px;
+}
+
+h1 {
+  font-size: 36px;
+  padding: 12px 0;
+}
+
+

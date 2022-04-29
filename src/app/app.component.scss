@@ -1,0 +1,38 @@
+@import "../styles/index";
+
+.profile {
+  text-align: center;
+}
+
+.navigation {
+  margin-bottom: 20px;
+}
+
+.navigation-btn {
+  margin: 8px;
+  padding: 12px 16px;
+  border-radius: 5px;
+  background: $clr-secondary-background;
+
+  &--active {
+    background: darken($clr-secondary-background, 10%);
+  }
+}
+
+.social-icons {
+  padding: 12px 0;
+  margin-bottom: 20px;
+
+  a {
+    margin: 8px;
+    display: inline-block;
+    &:visited {
+      color: $clr-primary-color;
+    }
+
+    svg {
+      height: 26px;
+      width: 26px;
+    }
+  }
+}
