@@ -17,9 +17,10 @@ export class ScanService {
     this.setLoading(true);
     let params = new HttpParams().set("target", target);
     return this.http.get<ScanResponse[]>(`${environment.api}api/scan`, { params }).pipe(
-      tap((data) => setTimeout(() => this.setLoading(false),5000)),
-      catchError((data) => {
-        setTimeout(() => this.setLoading(false),5000)
+      tap((data) => this.setLoading(false)),
+      catchError((error) => {
+        console.log(error);
+        this.setLoading(false);
         return of();
       })
     );
