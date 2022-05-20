@@ -1,6 +1,4 @@
 <div class="content">
-  <h1>Scan</h1>
-  <p>Check the attack surfaces of your publicly accessible assets.</p>
   <form class="form">
     <div class="search">
       <input type="text" [(ngModel)]="domain" name="target" placeholder="Domain name">
@@ -8,25 +6,31 @@
     </div>
   </form>
   <ng-container *ngIf="(loading$ | async) === false; else loading">
-    <div class="report-list" *ngFor="let scanReport of response">
-      <div class="report">
-        <h3>Target: {{scanReport.target}}</h3>
-        <div class="tls-list">
-          <div class="tls" *ngFor="let tls of scanReport.tls">
-            <h4>{{tls.version}}</h4>
-            <h5>Supported: {{tls.supported}}</h5>
-            <ng-container *ngIf="tls.ciphers?.length">
-              <h5>Ciphers: </h5>
-              <div class="ciphers">
-                <ul>
-                  <li *ngFor="let cipher of tls.ciphers">{{ cipher }}</li>
-                </ul>
+    <ng-container *ngIf="response$ | async as response">
+      <ng-container *ngIf="response.length">
+
+        <div class="report-list" *ngFor="let scanReport of response">
+          <div class="report">
+            <h3>Target: {{scanReport.target}}</h3>
+            <div class="tls-list">
+              <div class="tls" *ngFor="let tls of scanReport.tls">
+                <h4>{{tls.version}}</h4>
+                <h5>Supported: {{tls.supported}}</h5>
+                <ng-container *ngIf="tls.ciphers?.length">
+                  <h5>Ciphers: </h5>
+                  <div class="ciphers">
+                    <ul>
+                      <li *ngFor="let cipher of tls.ciphers">{{ cipher }}</li>
+                    </ul>
+                  </div>
+                </ng-container>
               </div>
-            </ng-container>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+
+      </ng-container>
+    </ng-container>
   </ng-container>
 </div>
 
@@ -35,5 +39,11 @@
     <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
       <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
     </svg>
+  </div>
+</ng-template>
+
+<ng-template #error>
+  <div class="report-list">
+    <h3>Empty</h3>
   </div>
 </ng-template>

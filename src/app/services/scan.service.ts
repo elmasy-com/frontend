@@ -19,7 +19,6 @@ export class ScanService {
     return this.http.get<ScanResponse[]>(`${environment.api}api/scan`, { params }).pipe(
       tap((data) => this.setLoading(false)),
       catchError((error) => {
-        console.log(error);
         this.setLoading(false);
         return of();
       })
@@ -57,7 +56,6 @@ export class ScanService {
     // }]);
   }
   setLoading(state: boolean) {
-    console.log(state);
     this.loading.next(state);
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ScanService} from "../services/scan.service";
-import {tap} from "rxjs";
+import {catchError, Observable, of, startWith, Subject, tap} from "rxjs";
+import {ScanResponse} from "../models/scan.response";
 
 @Component({
   selector: 'app-scan',
@@ -9,7 +10,8 @@ import {tap} from "rxjs";
 })
 export class ScanComponent implements OnInit {
   domain!: string;
-  response: any;
+  responseSubject = new Subject<ScanResponse[]>();
+  response$: Observable<ScanResponse[]> = this.responseSubject.asObservable().pipe(startWith([]));
   loading$ = this.scanService.loading$;
 
   constructor(private scanService: ScanService) { }
@@ -20,7 +22,7 @@ export class ScanComponent implements OnInit {
   scan() {
     this.scanService.scan(this.domain).pipe(
       tap(value => {
-        this.response = value;
+        this.responseSubject.next(value);
       })
     ).subscribe()
   }

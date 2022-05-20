@@ -4,9 +4,10 @@ import {AboutComponent} from "./about/about.component";
 import {ScanComponent} from "./scan/scan.component";
 
 const routes: Routes = [
-  { path: 'about', component: AboutComponent },
-  { path: 'scan', component: ScanComponent },
-  { path: '**', redirectTo: 'about'}
+  { path: '', component: ScanComponent },
+  // { path: 'about', component: AboutComponent },
+  // { path: 'scan', component: ScanComponent },
+  { path: '**', redirectTo: ''}
 ];
 
 @NgModule({
