@@ -14,7 +14,7 @@ export class ScanService {
   constructor(private http: HttpClient) { }
 
   scan(target: string, port?: string, network?: string): Observable<ScanResponse[]> {
-    this.setLoading(false);
+    this.setLoading(true);
     let params = new HttpParams().set("target", target);
     return this.http.get<ScanResponse[]>(`${environment.api}api/scan`, { params }).pipe(
       tap((data) => this.setLoading(false)),
