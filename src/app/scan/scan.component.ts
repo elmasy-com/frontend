@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ScanService} from "../services/scan.service";
-import {catchError, Observable, of, startWith, Subject, tap} from "rxjs";
-import {ScanResponse} from "../models/scan.response";
+import { Observable, startWith, Subject, tap} from "rxjs";
+import { ScanResponse } from "../models/scan.response";
 
 @Component({
   selector: 'app-scan',

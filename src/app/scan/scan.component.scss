@@ -61,6 +61,37 @@
   }
 }
 
+.cipher-list {
+  list-style: none;
+
+  &-item {
+    padding: 5px 0;
+  }
+}
+
+.cipher-security {
+  padding: 5px 15px;
+  margin-right: 5px;
+  border-radius: 5px;
+  font-weight: bold;
+
+  &.weak {
+    background: darken(hsl(45, 100, 51), 10%);
+  }
+
+  &.recommended {
+    background: hsl(152, 69, 31);
+  }
+
+  &.insecure {
+    background: hsl(354, 70, 54);
+  }
+
+  &.secure {
+    background: hsl(120, 100, 30);
+  }
+}
+
 .loading{
   margin: 20px;
   display: flex;

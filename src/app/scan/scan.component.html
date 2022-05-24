@@ -19,8 +19,10 @@
                 <ng-container *ngIf="tls.ciphers?.length">
                   <h5>Ciphers: </h5>
                   <div class="ciphers">
-                    <ul>
-                      <li *ngFor="let cipher of tls.ciphers">{{ cipher }}</li>
+                    <ul class="cipher-list">
+                      <li class="cipher-list-item" *ngFor="let cipher of tls.ciphers">
+                        <span class="cipher-security" [ngClass]="cipher.Security">{{ cipher.Security | titlecase }}</span><span>{{ cipher.Name }}</span>
+                      </li>
                     </ul>
                   </div>
                 </ng-container>

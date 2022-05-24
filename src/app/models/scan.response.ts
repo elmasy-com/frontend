@@ -6,5 +6,17 @@ export interface ScanResponse {
 export interface TLS {
   version: string;
   supported: boolean;
-  ciphers: string[];
+  ciphers: Cipher[];
+}
+
+export interface Cipher {
+  Name: string;
+  Security: Security;
+}
+
+export enum Security {
+  Weak = 'weak',
+  Secure = 'secure',
+  Insecure = 'insecure',
+  Recommended = 'recommended',
 }

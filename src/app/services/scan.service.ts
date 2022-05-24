@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {catchError, Observable, of, startWith, Subject, tap} from "rxjs";
-import {ScanResponse} from "../models/scan.response";
+import {ScanResponse, Security} from "../models/scan.response";
 import {environment} from "../../environments/environment";
 
 @Injectable({
@@ -14,7 +14,7 @@ export class ScanService {
   constructor(private http: HttpClient) { }
 
   scan(target: string, port?: string, network?: string): Observable<ScanResponse[]> {
-    this.setLoading(true);
+    this.setLoading(false);
     let params = new HttpParams().set("target", target);
     return this.http.get<ScanResponse[]>(`${environment.api}api/scan`, { params }).pipe(
       tap((data) => this.setLoading(false)),
@@ -46,10 +46,22 @@ export class ScanService {
     //       version: "tls12",
     //       supported: true,
     //       ciphers: [
-    //         "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384",
-    //         "TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256",
-    //         "TLS_DHE_RSA_WITH_AES_256_GCM_SHA384",
-    //         "TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256"
+    //         {
+    //           Name: "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384",
+    //           Security: Security.Secure
+    //         },
+    //         {
+    //           Name: "TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256",
+    //           Security: Security.Weak
+    //         },
+    //         {
+    //           Name: "TLS_DHE_RSA_WITH_AES_256_GCM_SHA384",
+    //           Security: Security.Recommended
+    //         },
+    //         {
+    //           Name: "TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256",
+    //           Security: Security.Insecure
+    //         }
     //       ]
     //     }
     //   ]
