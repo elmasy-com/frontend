@@ -16,7 +16,7 @@ export class ScanService {
   scan(target: string, port?: string, network?: string): Observable<ScanResponse[]> {
     this.setLoading(true);
     let params = new HttpParams().set("target", target);
-    return this.http.get<ScanResponse[]>(`${environment.api}api/scan`, { params }).pipe(
+    return this.http.get<ScanResponse[]>(`${environment.api}scan`, { params }).pipe(
       tap((data) => this.setLoading(false)),
       catchError((error) => {
         this.setLoading(false);
