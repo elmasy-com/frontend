@@ -1,17 +1,25 @@
 <div class="content">
+
   <form class="form">
-    <div class="search">
-      <input type="text" [(ngModel)]="domain" name="target" placeholder="Domain name">
-      <button (click)="scan()">Scan</button>
-    </div>
+    <label for="domain">Domain name:</label>
+    <input id="domain" type="text" [(ngModel)]="domain" name="domain" placeholder="Domain name">
+    <label for="port">Port:</label>
+    <input id="port" type="text" name="port" value="443" placeholder="Port">
+    <label for="protocol">Protocol:</label>
+    <select name="protocol" id="protocol">
+      <option value="tcp">TCP</option>
+      <option value="udp">UDP</option>
+    </select>
+    <button (click)="scan()">Scan</button>
   </form>
+
   <ng-container *ngIf="(loading$ | async) === false; else loading">
     <ng-container *ngIf="response$ | async as response">
       <ng-container *ngIf="response.length">
 
         <div class="report-list" *ngFor="let scanReport of response">
           <div class="report">
-            <h3>Target: {{scanReport.target}}</h3>
+            <h3>Target: {{scanReport.target}} ({{ domain }})</h3>
             <div class="tls-list">
               <div class="tls" *ngFor="let tls of scanReport.tls">
                 <h4>{{tls.version}}</h4>
@@ -38,9 +46,7 @@
 
 <ng-template #loading>
   <div class="loading">
-    <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-      <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
-    </svg>
+    <app-loading-spinner></app-loading-spinner>
   </div>
 </ng-template>
 

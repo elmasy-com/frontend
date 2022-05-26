@@ -6,31 +6,29 @@
 
 .form {
   display: flex;
+  flex-direction: column;
   justify-content: center;
 
-  .search {
-    width: 100%;
-    height: 50px;
-    display: grid;
-    grid-template-columns: 1fr 150px;
+  label {
+    color: $clr-primary-color;
   }
 
-  .search input {
-    margin: 0;
+  input, select {
+    margin-bottom: 20px;
     padding: 10px;
     height: 50px;
     background: $clr-secondary-color;
-    border-radius: 5px 0 0 5px;
+    border-radius: 5px;
     border: 1px solid darken($clr-secondary-background, 10%);
     outline: none;
     vertical-align: middle;
   }
 
-  .search button {
+  button {
     margin: 0;
     height: 50px;
     padding: 12px 16px;
-    border-radius: 0 5px 5px 0;
+    border-radius: 5px;
     border: none;
     font-size: 18px;
     color: $clr-primary-color;
@@ -76,19 +74,19 @@
   font-weight: bold;
 
   &.weak {
-    background: darken(hsl(45, 100, 51), 10%);
+    background: darken(hsl(45, 100%, 51%), 10%);
   }
 
   &.recommended {
-    background: hsl(152, 69, 31);
+    background: hsl(152, 69%, 31%);
   }
 
   &.insecure {
-    background: hsl(354, 70, 54);
+    background: hsl(354, 70%, 54%);
   }
 
   &.secure {
-    background: hsl(120, 100, 30);
+    background: hsl(120, 100%, 30%);
   }
 }
 
@@ -98,43 +96,3 @@
   justify-content: center;
 }
 
-$offset: 187;
-$duration: 1.4s;
-
-.spinner {
-  animation: rotator $duration linear infinite;
-}
-
-@keyframes rotator {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(270deg); }
-}
-
-.path {
-  stroke-dasharray: $offset;
-  stroke-dashoffset: 0;
-  transform-origin: center;
-  animation:
-    dash $duration ease-in-out infinite,
-    colors ($duration*4) ease-in-out infinite;
-}
-
-@keyframes colors {
-  0% { stroke: $clr-primary-color; }
-  25% { stroke: $clr-primary-color; }
-  50% { stroke: $clr-primary-color; }
-  75% { stroke: $clr-primary-color; }
-  100% { stroke: $clr-primary-color; }
-}
-
-@keyframes dash {
-  0% { stroke-dashoffset: $offset; }
-  50% {
-    stroke-dashoffset: $offset/4;
-    transform:rotate(135deg);
-  }
-  100% {
-    stroke-dashoffset: $offset;
-    transform:rotate(450deg);
-  }
-}
