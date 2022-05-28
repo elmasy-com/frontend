@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ScanService} from "../services/scan.service";
-import { Observable, startWith, Subject, tap} from "rxjs";
-import { ScanResponse } from "../models/scan.response";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-scan',
@@ -9,21 +8,21 @@ import { ScanResponse } from "../models/scan.response";
   styleUrls: ['./scan.component.scss']
 })
 export class ScanComponent implements OnInit {
-  domain!: string;
-  responseSubject = new Subject<ScanResponse[]>();
-  response$: Observable<ScanResponse[]> = this.responseSubject.asObservable().pipe(startWith([]));
-  loading$ = this.scanService.loading$;
+  scanForm: FormGroup = this.fb.group({
+    target: new FormControl(''),
+    port: new FormControl(443),
+    protocol: new FormControl('tcp')
+  });
 
-  constructor(private scanService: ScanService) { }
+  loading$ = this.scanService.loading$;
+  scans$ = this.scanService.scanResults$;
+
+  constructor(private fb: FormBuilder, private scanService: ScanService) { }
 
   ngOnInit(): void {
   }
 
   scan() {
-    this.scanService.scan(this.domain).pipe(
-      tap(value => {
-        this.responseSubject.next(value);
-      })
-    ).subscribe()
+    this.scanService.scan(this.scanForm.value).subscribe();
   }
 }

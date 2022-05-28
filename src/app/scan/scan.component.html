@@ -1,46 +1,29 @@
 <div class="content">
 
-  <form class="form">
-    <label for="domain">Domain name:</label>
-    <input id="domain" type="text" [(ngModel)]="domain" name="domain" placeholder="Domain name">
-    <label for="port">Port:</label>
-    <input id="port" type="text" name="port" value="443" placeholder="Port">
-    <label for="protocol">Protocol:</label>
-    <select name="protocol" id="protocol">
-      <option value="tcp">TCP</option>
-      <option value="udp">UDP</option>
-    </select>
-    <button (click)="scan()">Scan</button>
+  <form class="form" (ngSubmit)="scan()" [formGroup]="scanForm">
+    <div class="form-control">
+      <label for="domain">Domain name:</label>
+      <input id="domain" type="text" [formControlName]="'target'" name="domain" placeholder="Domain name">
+    </div>
+    <div class="grid-col-2">
+      <div class="form-control">
+        <label for="port">Port:</label>
+        <input id="port" type="text" [formControlName]="'port'" name="port" value="443" placeholder="Port">
+      </div>
+      <div class="form-control">
+        <label for="protocol">Protocol:</label>
+        <select name="protocol" id="protocol" [formControlName]="'protocol'">
+          <option value="tcp">TCP</option>
+          <option value="udp">UDP</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit">Scan</button>
   </form>
 
   <ng-container *ngIf="(loading$ | async) === false; else loading">
-    <ng-container *ngIf="response$ | async as response">
-      <ng-container *ngIf="response.length">
-
-        <div class="report-list" *ngFor="let scanReport of response">
-          <div class="report">
-            <h3>Target: {{scanReport.target}} ({{ domain }})</h3>
-            <div class="tls-list">
-              <div class="tls" *ngFor="let tls of scanReport.tls">
-                <h4>{{tls.version}}</h4>
-                <h5>Supported: {{tls.supported}}</h5>
-                <ng-container *ngIf="tls.ciphers?.length">
-                  <h5>Ciphers: </h5>
-                  <div class="ciphers">
-                    <ul class="cipher-list">
-                      <li class="cipher-list-item" *ngFor="let cipher of tls.ciphers">
-                        <span class="cipher-security" [ngClass]="cipher.Security">{{ cipher.Security | titlecase }}</span><span>{{ cipher.Name }}</span>
-                      </li>
-                    </ul>
-                  </div>
-                </ng-container>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </ng-container>
-    </ng-container>
+        <app-scan-result-list [scanResults]="scans$ | async"></app-scan-result-list>
   </ng-container>
 </div>
 

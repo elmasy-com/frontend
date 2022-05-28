@@ -40,59 +40,25 @@
   }
 }
 
-.report-list {
-  margin-top: 20px;
-  padding: 20px;
-  border-radius: 5px;
-  background: lighten($clr-background, 20%);
-}
-
-.report {
-
-}
-
-.tls {
-  margin-bottom: 20px;
-
-  .ciphers {
-    padding: 0 10px;
-  }
-}
-
-.cipher-list {
-  list-style: none;
-
-  &-item {
-    padding: 5px 0;
-  }
-}
-
-.cipher-security {
-  padding: 5px 15px;
-  margin-right: 5px;
-  border-radius: 5px;
-  font-weight: bold;
-
-  &.weak {
-    background: darken(hsl(45, 100%, 51%), 10%);
-  }
-
-  &.recommended {
-    background: hsl(152, 69%, 31%);
-  }
-
-  &.insecure {
-    background: hsl(354, 70%, 54%);
-  }
-
-  &.secure {
-    background: hsl(120, 100%, 30%);
-  }
-}
-
 .loading{
   margin: 20px;
   display: flex;
   justify-content: center;
+}
+
+.form-control {
+  width: 100%;
+  input, select {
+    width: 100%;
+  }
+  label{
+    display: block;
+  }
+}
+
+.grid-col-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
 }
 

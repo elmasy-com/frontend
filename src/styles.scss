@@ -1,5 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
 @import "styles/index";
+
+/* You can add global styles to this file, and also import other style files */
 $padding-24: 24px;
 
 *, ::after, ::before {
@@ -59,3 +60,6 @@ h1 {
 }
 
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

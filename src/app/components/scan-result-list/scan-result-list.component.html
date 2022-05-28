@@ -1,0 +1,66 @@
+<div class="report-list" *ngIf="scanResults && scanResults.domain">
+  <div class="report">
+    <h3>{{scanResults.domain}}</h3>
+    <div class="target-list">
+      <div class="target" *ngFor="let target of scanResults.targets">
+        <h4>{{target.ip}}</h4>
+        <div class="tls">
+          <mat-accordion multi>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  TLS
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div class="tls-version-list">
+
+                <div class="tls-version" *ngFor="let tlsVersion of target.tls.version">
+                  <ng-container *ngIf="!tlsVersion.supported; else supported">
+                      <span>{{ tlsVersion.version }} is not supported</span>
+                  </ng-container>
+                  <ng-template #supported>
+                    <p>{{ tlsVersion.version }}</p>
+                    <div class="cipher-list-item" *ngFor="let cipher of tlsVersion.ciphers" >
+                      <span class="cipher-security" [ngClass]="cipher.security">{{ cipher.security | titlecase }}</span><span>{{ cipher.name }}</span>
+                    </div>
+                  </ng-template>
+                </div>
+
+              </div>
+
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  CERT
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div class="cert">
+                <p><span class="title">Common name:</span> {{ target.tls.cert.commonName }}</p>
+                <p><span class="title">Alternative names:</span> <span *ngFor="let name of target.tls.cert.alternativeNames"> {{ name }}</span> </p>
+                <p><span class="title">Serial Number:</span> {{ target.tls.cert.serialNumber }}</p>
+                <p><span class="title">Hash:</span> {{ target.tls.cert.hash }}</p>
+                <p><span class="title">Valid from:</span> {{ target.tls.cert.notBefore }}</p>
+                <p><span class="title">Valid until:</span> {{ target.tls.cert.notAfter }}</p>
+                <p><span class="title">Key: </span> {{ target.tls.cert.publicKey.algo }} {{ target.tls.cert.publicKey.size }} bits (e {{target.tls.cert.publicKey.exponent}})</p>
+                <p><span class="title">Issuer:</span> {{ target.tls.cert.issuer }}</p>
+                <p><span class="title">Signature Algorithm:</span> {{ target.tls.cert.signatureAlgorithm }}</p>
+              </div>
+              <div class="chain-list">
+                <h4>Additional certificates</h4>
+                <div class="cert chain" *ngFor="let chain of target.tls.cert.chain">
+                  <p><span class="title">Common name:</span> {{ chain.commonName }}</p>
+                  <p><span class="title">Hash:</span> {{ chain.hash }}</p>
+                  <p><span class="title">Valid until:</span> {{ chain.notAfter }}</p>
+                  <p><span class="title">Issuer:</span> {{ chain.issuer }}</p>
+                  <p><span class="title">Key: </span> {{ chain.publicKey.algo }} {{ chain.publicKey.size }} bits (e {{chain.publicKey.exponent}})</p>
+                  <p><span class="title">Signature algorithm:</span> {{ chain.signatureAlgorithm }}</p>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

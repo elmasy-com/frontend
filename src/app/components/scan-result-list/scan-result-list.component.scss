@@ -1,0 +1,77 @@
+@import "../../../styles/index";
+
+.report-list {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  background: lighten($clr-background, 20%);
+}
+
+.report {
+
+}
+
+.tls {
+  margin-bottom: 20px;
+
+  .ciphers {
+    padding: 0 10px;
+  }
+}
+
+.cipher-list {
+  list-style: none;
+
+  &-item {
+    padding: 5px 0;
+  }
+}
+
+.cipher-security {
+  padding: 5px 15px;
+  margin-right: 5px;
+  border-radius: 5px;
+  font-weight: bold;
+
+  &.weak {
+    background: darken(hsl(45, 100%, 51%), 10%);
+  }
+
+  &.recommended {
+    background: hsl(152, 69%, 31%);
+  }
+
+  &.insecure {
+    background: hsl(354, 70%, 54%);
+  }
+
+  &.secure {
+    background: hsl(120, 100%, 30%);
+  }
+}
+
+.tls-version-list {
+
+  .tls-version {
+    padding: 15px;
+    background: $clr-background;
+    &:nth-child(odd) {
+      background: $clr-secondary-background;
+    }
+  }
+
+}
+
+.cert{
+  margin-bottom: 20px;
+
+  p {
+    padding: 5px;
+    border-bottom: 1px solid gray;
+
+    .title {
+      font-weight: bold;
+      margin-left: 5px;
+    }
+  }
+}
