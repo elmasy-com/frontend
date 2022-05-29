@@ -1,20 +1,23 @@
 <div class="content">
 
   <form class="form" (ngSubmit)="scan()" [formGroup]="scanForm">
-    <div class="form-control">
-      <label for="domain">Domain name:</label>
+    <div class="form-control" [ngClass]="{'input-error': target?.hasError('required') && target?.touched}">
+      <label for="domain">Domain name*</label>
       <input id="domain" type="text" [formControlName]="'target'" name="domain" placeholder="Domain name">
       <div class="errors" *ngIf="scanForm.touched && scanForm.invalid">
         <p class="form-field-error" *ngIf="target?.hasError('required')">Please provide a domain name.</p>
       </div>
     </div>
     <div class="grid-col-2">
-      <div class="form-control">
-        <label for="port">Port:</label>
-        <input id="port" type="text" [formControlName]="'port'" name="port" value="443" placeholder="Port">
+      <div class="form-control" [ngClass]="{'input-error': port?.hasError('pattern') && port?.touched}">
+        <label for="port">Port</label>
+        <input id="port" type="text" [ngClass]="{'input-error': port?.hasError('pattern')}" [formControlName]="'port'" name="port" value="443" placeholder="Port">
+        <div class="errors" *ngIf="scanForm.touched && scanForm.invalid">
+          <p class="form-field-error" *ngIf="port?.hasError('pattern')">Please provide a valid port number.</p>
+        </div>
       </div>
       <div class="form-control">
-        <label for="protocol">Protocol:</label>
+        <label for="protocol">Protocol</label>
         <select name="protocol" id="protocol" [formControlName]="'protocol'">
           <option value="tcp">TCP</option>
           <option value="udp">UDP</option>
@@ -39,8 +42,3 @@
   </div>
 </ng-template>
 
-<ng-template #error>
-  <div class="report-list">
-    <h3>Empty</h3>
-  </div>
-</ng-template>

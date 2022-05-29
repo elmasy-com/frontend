@@ -20,10 +20,11 @@ export class ScanService {
   scan(formValue: {target: string, port: number, protocol: string}): Observable<ScanResult> {
     this.errorService.errors$.next(null);
     this.setLoading(true);
-    let params = new HttpParams()
-      .set("target", formValue.target)
-      .set("port", formValue.port)
-      .set("network", formValue.protocol);
+    let params = new HttpParams().set("target", formValue.target)
+    if(formValue.port) {
+      params = params.append("port", formValue.port)
+    }
+    params = params.append("network", formValue.protocol);
     return this.http.get<ScanResult>(`${environment.api}/api/scan`, {params}).pipe(
       catchError((error) => {
         this.setLoading(false);

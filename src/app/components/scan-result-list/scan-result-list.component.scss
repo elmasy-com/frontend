@@ -7,6 +7,16 @@
   background: lighten($clr-background, 20%);
 }
 
+.scan-error{
+  padding: 10px;
+  color: white;
+  font-size: 16px;
+  background: #505050;
+  &:nth-child(odd) {
+    background: #6e6e6e;
+  }
+}
+
 h3, h4 {
   color: $clr-primary-color;
 }

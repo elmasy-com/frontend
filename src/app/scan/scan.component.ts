@@ -13,7 +13,7 @@ export class ScanComponent implements OnInit {
   destroy$ = new Subject<boolean>();
   scanForm: FormGroup = this.fb.group({
     target: new FormControl('', Validators.required),
-    port: new FormControl(443),
+    port: new FormControl(443, Validators.pattern(/^[0-9]*$/)),
     protocol: new FormControl('tcp')
   });
 
@@ -38,6 +38,10 @@ export class ScanComponent implements OnInit {
 
   get target(){
     return this.scanForm.get('target');
+  }
+
+  get port(){
+    return this.scanForm.get('port');
   }
 
   ngOnDestroy() {

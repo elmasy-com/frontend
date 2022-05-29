@@ -66,6 +66,13 @@
   .form-field-error {
     color: red;
   }
+
+  &.input-error {
+    label { color: red }
+    input {
+      border: 2px solid red !important;
+    }
+  }
 }
 
 .grid-col-2 {

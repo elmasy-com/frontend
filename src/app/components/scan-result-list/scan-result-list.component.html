@@ -1,4 +1,4 @@
-<div class="report-list" *ngIf="scanResults && scanResults.domain">
+<div class="report-list" *ngIf="scanResults && scanResults.domain && !scanResults?.errors?.length; else error">
   <div class="report">
     <h3>{{scanResults.domain}}</h3>
     <div class="target-list">
@@ -47,3 +47,12 @@
     </div>
   </div>
 </div>
+
+<ng-template #error>
+  <div class="report-list" *ngIf="scanResults?.errors?.length">
+    <h3>{{scanResults?.domain}}</h3>
+    <p class="scan-error" *ngFor="let error of scanResults?.errors">
+      {{ error }}
+    </p>
+  </div>
+</ng-template>
