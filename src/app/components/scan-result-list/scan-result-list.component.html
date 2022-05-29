@@ -1,7 +1,7 @@
 <div class="report-list" *ngIf="scanResults && scanResults.domain">
   <div class="report">
     <h3>{{scanResults.domain}}</h3>
-    <div class="error-list">
+    <div class="error-list" *ngIf="scanResults.errors && scanResults.errors.length">
       <h4>Errors:</h4>
       <p class="scan-error" *ngFor="let error of scanResults?.errors">
         {{ error }}
