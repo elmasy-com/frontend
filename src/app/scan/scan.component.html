@@ -4,6 +4,9 @@
     <div class="form-control">
       <label for="domain">Domain name:</label>
       <input id="domain" type="text" [formControlName]="'target'" name="domain" placeholder="Domain name">
+      <div class="errors" *ngIf="scanForm.touched && scanForm.invalid">
+        <p class="form-field-error" *ngIf="target?.hasError('required')">Please provide a domain name.</p>
+      </div>
     </div>
     <div class="grid-col-2">
       <div class="form-control">
@@ -24,6 +27,9 @@
 
   <ng-container *ngIf="(loading$ | async) === false; else loading">
         <app-scan-result-list [scanResults]="scans$ | async"></app-scan-result-list>
+  </ng-container>
+  <ng-container *ngIf="errorService.errors$ | async as error">
+    <div class="error-box">{{error.error.error}}</div>
   </ng-container>
 </div>
 

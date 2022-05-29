@@ -1,10 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {ScanResult} from "../../models/scan.response";
 
 @Component({
   selector: 'app-scan-result-list',
   templateUrl: './scan-result-list.component.html',
-  styleUrls: ['./scan-result-list.component.scss']
+  styleUrls: ['./scan-result-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScanResultListComponent implements OnInit {
 
@@ -12,7 +13,6 @@ export class ScanResultListComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

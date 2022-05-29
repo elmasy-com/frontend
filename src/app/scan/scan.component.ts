@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ScanService} from "../services/scan.service";
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validator, Validators} from "@angular/forms";
+import {Subject, takeUntil} from "rxjs";
+import {ErrorService} from "../services/error.service";
 
 @Component({
   selector: 'app-scan',
@@ -8,8 +10,9 @@ import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
   styleUrls: ['./scan.component.scss']
 })
 export class ScanComponent implements OnInit {
+  destroy$ = new Subject<boolean>();
   scanForm: FormGroup = this.fb.group({
-    target: new FormControl(''),
+    target: new FormControl('', Validators.required),
     port: new FormControl(443),
     protocol: new FormControl('tcp')
   });
@@ -17,12 +20,28 @@ export class ScanComponent implements OnInit {
   loading$ = this.scanService.loading$;
   scans$ = this.scanService.scanResults$;
 
-  constructor(private fb: FormBuilder, private scanService: ScanService) { }
+  constructor(private fb: FormBuilder, private scanService: ScanService, public errorService: ErrorService) { }
 
   ngOnInit(): void {
   }
 
   scan() {
-    this.scanService.scan(this.scanForm.value).subscribe();
+    this.scanForm.markAllAsTouched();
+    if (this.scanForm.valid) {
+      this.scanService.scan(this.scanForm.value).pipe(takeUntil(this.destroy$)).subscribe();
+    }
+  }
+
+  get controls() {
+    return this.scanForm.controls;
+  }
+
+  get target(){
+    return this.scanForm.get('target');
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(false);
+    this.destroy$.complete();
   }
 }

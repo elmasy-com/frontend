@@ -48,11 +48,16 @@
 
 .form-control {
   width: 100%;
+  margin-bottom: 20px;
   input, select {
     width: 100%;
+    margin-bottom: 0;
   }
   label{
     display: block;
+  }
+  .form-field-error {
+    color: red;
   }
 }
 
@@ -62,3 +67,12 @@
   gap: 50px;
 }
 
+.error-box{
+  width: 100%;
+  padding: 20px;
+  background: #f13535;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+}
