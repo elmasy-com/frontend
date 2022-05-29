@@ -1,0 +1,6 @@
+<app-data-row title="Common name">{{ chain.commonName }}</app-data-row>
+<app-data-row title="Hash">{{ chain.hash }}</app-data-row>
+<app-data-row title="Valid until">{{ chain.notAfter }}</app-data-row>
+<app-data-row title="Issuer">{{ chain.issuer }}</app-data-row>
+<app-data-row title="Key">{{ chain.publicKey.algo }} {{ chain.publicKey.size }} bits (e {{chain.publicKey.exponent}})</app-data-row>
+<app-data-row title="Signature Algorithm">{{ chain.signatureAlgorithm }}</app-data-row>

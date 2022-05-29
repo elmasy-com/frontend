@@ -17,7 +17,6 @@
     margin-bottom: 20px;
     padding: 10px;
     height: 50px;
-    background: $clr-secondary-color;
     border-radius: 5px;
     border: 1px solid darken($clr-secondary-background, 10%);
     outline: none;
@@ -30,12 +29,20 @@
     padding: 12px 16px;
     border-radius: 5px;
     border: none;
-    font-size: 18px;
-    color: $clr-primary-color;
-    background: $clr-secondary-background;
+    font-size: 22px;
+    font-weight: bold;
+    color: $clr-background;
+    background: $clr-accent;
+    cursor: pointer;
 
     &:hover {
-      background: darken($clr-secondary-background, 10%);
+      background: darken($clr-accent, 10%);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      color: $clr-accent;
+      background: $clr-secondary-background;
     }
   }
 }
@@ -69,8 +76,10 @@
 
 .error-box{
   width: 100%;
+  margin-top: 20px;
+  border: 1px solid white;
   padding: 20px;
-  background: #f13535;
+  background: #9b2020;
   color: white;
   font-weight: bold;
   font-size: 20px;

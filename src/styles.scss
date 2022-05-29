@@ -22,21 +22,16 @@ body {
   }
 }
 
-h1, h2, h3, h4, h5, h6, p, a, ul, ol, li {
-  color: $clr-primary-color;
+//h1, h2, h3, h4, h5, h6, p{
+//  color: $clr-primary-color;
+//}
+h1 {
+  font-size: 36px;
+  padding: 12px 0;
 }
 
 a {
   text-decoration: none;
-}
-
-ol,ul{
-  padding-inline-start: 20px;
-  margin-bottom:20px;
-}
-
-li {
-  margin-top: 5px;
 }
 
 .main {
@@ -54,12 +49,3 @@ li {
   max-width: 672px;
 }
 
-h1 {
-  font-size: 36px;
-  padding: 12px 0;
-}
-
-
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

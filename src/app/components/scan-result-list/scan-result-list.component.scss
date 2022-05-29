@@ -7,8 +7,8 @@
   background: lighten($clr-background, 20%);
 }
 
-.report {
-
+h3, h4 {
+  color: $clr-primary-color;
 }
 
 .tls {
@@ -62,16 +62,7 @@
 
 }
 
-.cert{
+app-cert, app-chain{
+  display: block;
   margin-bottom: 20px;
-
-  p {
-    padding: 5px;
-    border-bottom: 1px solid gray;
-
-    .title {
-      font-weight: bold;
-      margin-left: 5px;
-    }
-  }
 }

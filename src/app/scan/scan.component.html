@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <button type="submit">Scan</button>
+    <button type="submit"[disabled]="loading$ | async">Scan</button>
   </form>
 
   <ng-container *ngIf="(loading$ | async) === false; else loading">

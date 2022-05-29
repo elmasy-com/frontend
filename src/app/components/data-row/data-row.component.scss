@@ -1,0 +1,26 @@
+:host-context(.green) {
+  .data {
+    color: green;
+    font-weight: bold;
+  }
+}
+
+:host-context(.red) {
+  .data{
+    color: red;
+    font-weight: bold;
+  }
+}
+
+
+p {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  border-bottom: 1px solid gray;
+
+  .title {
+    font-size: 16px;
+    font-weight: 400;
+  }
+}

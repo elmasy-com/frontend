@@ -10,6 +10,9 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { ScanResultListComponent } from './components/scan-result-list/scan-result-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatExpansionModule} from "@angular/material/expansion";
+import { DataRowComponent } from './components/data-row/data-row.component';
+import { CertComponent } from './components/cert/cert.component';
+import { ChainComponent } from './components/chain/chain.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,9 @@ import {MatExpansionModule} from "@angular/material/expansion";
     ScanComponent,
     LoadingSpinnerComponent,
     ScanResultListComponent,
+    DataRowComponent,
+    CertComponent,
+    ChainComponent,
   ],
   imports: [
     CommonModule,

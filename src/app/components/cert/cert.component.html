@@ -1,0 +1,11 @@
+<app-data-row title="Common name">{{ cert.commonName }}</app-data-row>
+<app-data-row title="Alternative names"> <span *ngFor="let name of cert.alternativeNames"> {{ name }}</span></app-data-row>
+<app-data-row title="Serial Number">{{ cert.serialNumber }}</app-data-row>
+<app-data-row title="Hash">{{ cert.hash }}</app-data-row>
+<app-data-row title="Valid from">{{ cert.notBefore }}</app-data-row>
+<app-data-row title="Valid until">{{ cert.notAfter }}</app-data-row>
+<app-data-row title="Key">{{ cert.publicKey.algo }} {{ cert.publicKey.size }} bits (e {{cert.publicKey.exponent}})</app-data-row>
+<app-data-row title="Issuer">{{ cert.issuer }}</app-data-row>
+<app-data-row title="Signature Algorithm">{{ cert.signatureAlgorithm }}</app-data-row>
+<app-data-row title="Verified" [ngClass]="{'green': cert.verified, 'red': !cert.verified}">{{ cert.verified }}</app-data-row>
+<app-data-row title="Verified error" *ngIf="!cert.verified">{{ cert.verifiedError }}</app-data-row>
